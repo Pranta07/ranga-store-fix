@@ -26,12 +26,18 @@
     <body>
         <header></header>
         <main class="main">
-            <div class="search-field">
-                <div class="search-box input-group">
-                    <input id="input-field" class="search-field" type="text" />
+            <!-- search area   -->
+            <div class="py-5 search-field">
+                <div class="mx-auto input-group w-50">
+                    <input
+                        id="input-field"
+                        class="rounded form-control"
+                        type="text"
+                        placeholder="Search..."
+                    />
                     <button
                         type="button"
-                        class="btn btn-primary search-button"
+                        class="btn btn-primary"
                         data-toggle="button"
                         aria-pressed="false"
                         autocomplete="off"
@@ -42,7 +48,9 @@
                     </button>
                 </div>
             </div>
-            <div class="row">
+
+            <!-- products section -->
+            <div class="px-3 ms-2 me-5 row">
                 <div class="col-md-9 col-lg-9 col-sm-7">
                     <div id="all-products" class=""></div>
                 </div>
@@ -51,12 +59,12 @@
                         <table class="table">
                             <thead>
                                 <h1>My-Cart</h1>
-                                <tr>
+                                <!-- <tr>
                                     <th scope="col"></th>
                                     <th scope="col"></th>
                                     <th scope="col"></th>
                                     <th scope="col"></th>
-                                </tr>
+                                </tr> -->
                             </thead>
                             <tbody>
                                 <tr>
@@ -64,35 +72,35 @@
                                     <td>
                                         <span id="total-Products">0</span>
                                     </td>
-                                    <td></td>
-                                    <td></td>
+                                    <!-- <td></td>
+                                    <td></td> -->
                                 </tr>
                                 <tr>
                                     <th>Price:</th>
                                     <td>$ <span id="price">0</span></td>
-                                    <td></td>
-                                    <td></td>
+                                    <!-- <td></td>
+                                    <td></td> -->
                                 </tr>
                                 <tr>
                                     <th>Delivery-Charge:</th>
                                     <td>
                                         $ <span id="delivery-charge">20</span>
                                     </td>
-                                    <td></td>
-                                    <td></td>
+                                    <!-- <td></td>
+                                    <td></td> -->
                                 </tr>
                                 <tr>
                                     <th>Total-Tax:</th>
                                     <td>$ <span id="total-tax">0</span></td>
-                                    <td></td>
-                                    <td></td>
+                                    <!-- <td></td>
+                                    <td></td> -->
                                 </tr>
                                 <tr>
                                     <th scope="row">Total</th>
                                     <td colspan="2">
                                         $ <span id="total">0</span>
                                     </td>
-                                    <td></td>
+                                    <!-- <td></td> -->
                                 </tr>
                             </tbody>
                         </table>

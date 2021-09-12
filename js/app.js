@@ -14,26 +14,29 @@ const showProducts = (products) => {
     for (const product of allProducts) {
         const imageUrl = product.image;
         const div = document.createElement("div");
-        div.classList.add("product");
+        div.classList.add("single-product", "card", "h-100", "rounded");
         div.innerHTML = `
-        <div class="single-product">
           <div>
-            <img class="product-image" src=${imageUrl}></img>
+            <img class="product-image" src=${imageUrl} alt="Product-Image"></img>
           </div>
-          <h3>${product.title}</h3>
-          <p>Category: ${product.category}</p>
-          <p>Rating Count: ${product.rating.count}</p>
-          <p>Rating Average: ${product.rating.rate}</p>
-          <h2>Price: $ ${product.price}</h2>
-          <button onclick="addToCart(${product.price})" id="addToCart-btn" class="buy-now btn btn-success">add to cart</button>
-          <button onclick="showDetails(${product.id})" id="details-btn" class="btn btn-danger">Details</button></div>
+          <h3 class="card-title">${product.title}</h3>
+          <div class="card-body">
+            <p class="m-0"><span class="fw-bold">Category:</span> ${product.category}</p>
+            <p class="m-0"><span class="fw-bold">Rating Count:</span> ${product.rating.count}</p>
+            <p class="m-0"><span class="fw-bold">Rating Average:</span> ${product.rating.rate}</p>
+            <h2>Price: $ ${product.price}</h2>
+          </div>
+          <div class="d-flex justify-content-evenly">
+          <button onclick="addToCart(${product.price})" id="addToCart-btn" class="buy-now btn btn-success">Add to cart</button>
+          <button onclick="loadDetails(${product.id})" id="details-btn" class="btn btn-primary">Details</button>
+          </div>
         `;
         document.getElementById("all-products").appendChild(div);
     }
 };
 
 let count = 0;
-const addToCart = (id, price) => {
+const addToCart = (price) => {
     count++;
     document.getElementById("total-Products").innerText = count;
 
@@ -43,6 +46,14 @@ const addToCart = (id, price) => {
 
     updateTotal();
 };
+
+const loadDetails = (productId) => {
+    fetch(`https://fakestoreapi.com/products/${productId}`)
+        .then((res) => res.json())
+        .then((data) => showDetails(data));
+};
+
+const showDetails = (product) => {};
 
 // to get the value
 const getValue = (id) => {
