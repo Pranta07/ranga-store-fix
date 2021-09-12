@@ -20,11 +20,11 @@ body {
     margin-top: 50px;
     border-right: none;
 }
-/* .search-button {
+.search-button {
     padding: 10px 50px;
     border-radius: 25px;
     margin-left: 20px;
-} */
+}
 #all-products {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
