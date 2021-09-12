@@ -33,7 +33,7 @@ const showProducts = (products) => {
 };
 let count = 0;
 const addToCart = (id, price) => {
-    count = count + 1;
+    count++;
     updatePrice("price", price);
 
     updateTaxAndCharge();
@@ -41,17 +41,16 @@ const addToCart = (id, price) => {
 };
 
 const getInputValue = (id) => {
-    const element = document.getElementById(id).innerText;
-    const converted = parseInt(element);
-    return converted;
+    const text = document.getElementById(id).innerText;
+    const value = parseFloat(text);
+    return value;
 };
 
 // main price update function
-const updatePrice = (id, value) => {
-    const convertedOldPrice = getInputValue(id);
-    const convertPrice = parseFloat(value);
-    const total = convertedOldPrice + convertPrice;
-    document.getElementById(id).innerText = Math.round(total);
+const updatePrice = (id, price) => {
+    const oldPrice = getInputValue(id);
+    const total = oldPrice + price;
+    document.getElementById(id).innerText = parseFloat(total).toFixed(2);
 };
 
 // set innerText function
