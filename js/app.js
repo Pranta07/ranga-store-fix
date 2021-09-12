@@ -24,11 +24,12 @@ const showProducts = (products) => {
             <p class="m-0"><span class="fw-bold">Category:</span> ${product.category}</p>
             <p class="m-0"><span class="fw-bold">Rating Count:</span> ${product.rating.count}</p>
             <p class="m-0"><span class="fw-bold">Rating Average:</span> ${product.rating.rate}</p>
-            <h2>Price: $ ${product.price}</h2>
+            <h3>Price: <span class="text-primary">$ ${product.price}</span></h3>
           </div>
           <div class="d-flex justify-content-evenly">
           <button onclick="addToCart(${product.price})" id="addToCart-btn" class="buy-now btn btn-success">Add to cart</button>
-          <button onclick="loadDetails(${product.id})" id="details-btn" class="btn btn-primary">Details</button>
+          <button onclick="loadDetails(${product.id})" id="details-btn" class="btn btn-primary" data-bs-toggle="modal"
+          data-bs-target="#exampleModal">Details</button>
           </div>
         `;
         document.getElementById("all-products").appendChild(div);
@@ -53,7 +54,10 @@ const loadDetails = (productId) => {
         .then((data) => showDetails(data));
 };
 
-const showDetails = (product) => {};
+const showDetails = (product) => {
+    document.getElementById("mod-title").innerText = product.title;
+    document.getElementById("mod-body").innerText = product.description;
+};
 
 // to get the value
 const getValue = (id) => {
