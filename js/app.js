@@ -9,6 +9,7 @@ loadProducts();
 
 // show all product in UI
 const showProducts = (products) => {
+    document.getElementById("spinner").classList.add("d-none");
     const allProducts = document.getElementById("all-products");
     for (const product of products) {
         const imageUrl = product.image;
