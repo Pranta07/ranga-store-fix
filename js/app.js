@@ -1,3 +1,19 @@
+const allProducts = document.getElementById("all-products");
+const spinner = document.getElementById("spinner");
+const inputField = document.getElementById("input-field");
+const searchButton = document.getElementById("search-btn");
+
+// search by category
+searchButton.addEventListener("click", () => {
+    spinner.classList.remove("d-none"); //show spinner
+    allProducts.innerHTML = ""; //clears prev products from UI
+
+    const url = `https://fakestoreapi.com/products/category/${inputField.value}`;
+    fetch(url)
+        .then((response) => response.json())
+        .then((data) => showProducts(data));
+});
+
 //load products from fakestore API
 const loadProducts = () => {
     const url = `https://fakestoreapi.com/products`;
@@ -9,8 +25,9 @@ loadProducts();
 
 // show all product in UI
 const showProducts = (products) => {
-    document.getElementById("spinner").classList.add("d-none");
-    const allProducts = document.getElementById("all-products");
+    spinner.classList.add("d-none"); //hide spinner
+    allProducts.innerHTML = ""; //clears prev products from UI
+
     for (const product of products) {
         const imageUrl = product.image;
         const div = document.createElement("div");
@@ -36,7 +53,7 @@ const showProducts = (products) => {
                     <span class="text-primary">$ ${product.price}</span>
                 </h3>
             </div>
-            <div class="d-flex justify-content-evenly">
+            <div>
                 <button onclick="addToCart(${
                     product.price
                 })" id="addToCart-btn" class="buy-now btn btn-success">Add to cart</button>
