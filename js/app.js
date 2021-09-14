@@ -1,4 +1,4 @@
-//load products using api
+//load products from fakestore API
 const loadProducts = () => {
     const url = `https://fakestoreapi.com/products`;
     fetch(url)
@@ -9,30 +9,43 @@ loadProducts();
 
 // show all product in UI
 const showProducts = (products) => {
-    const allProducts = products.map((product) => product);
-    //console.log(allProducts);
-    for (const product of allProducts) {
+    const allProducts = document.getElementById("all-products");
+    for (const product of products) {
         const imageUrl = product.image;
         const div = document.createElement("div");
         div.classList.add("single-product", "card", "h-100", "rounded");
         div.innerHTML = `
-          <div>
-            <img class="product-image" src=${imageUrl} alt="Product-Image"></img>
-          </div>
-          <h3 class="card-title">${product.title}</h3>
-          <div class="card-body">
-            <p class="m-0"><span class="fw-bold">Category:</span> ${product.category}</p>
-            <p class="m-0"><span class="fw-bold">Rating Count:</span> ${product.rating.count}</p>
-            <p class="m-0"><span class="fw-bold">Rating Average:</span> ${product.rating.rate}</p>
-            <h3>Price: <span class="text-primary">$ ${product.price}</span></h3>
-          </div>
-          <div class="d-flex justify-content-evenly">
-          <button onclick="addToCart(${product.price})" id="addToCart-btn" class="buy-now btn btn-success">Add to cart</button>
-          <button onclick="loadDetails(${product.id})" id="details-btn" class="btn btn-primary" data-bs-toggle="modal"
-          data-bs-target="#exampleModal">Details</button>
-          </div>
+            <div>
+                <img class="product-image" src=${imageUrl} alt="Product-Image"></img>
+            </div>
+            <h3 class="card-title mt-3">${product.title.slice(0, 15)}</h3>
+            <div class="card-body">
+                <p class="m-0"><span class="fw-bold">Category:</span> 
+                    ${product.category}
+                </p>
+                <p class="m-0 fw-bold">
+                    <i class="fas fa-users text-primary"></i> People Rated:
+                    <span class="text-primary">${product.rating.count}</span>
+                </p>
+                <p class="m-0 fw-bold">
+                    <i class="fas fa-star text-warning"></i> Average Rating:
+                    <span class="text-warning">${product.rating.rate}</span>
+                </p>
+                <h3>Price: 
+                    <span class="text-primary">$ ${product.price}</span>
+                </h3>
+            </div>
+            <div class="d-flex justify-content-evenly">
+                <button onclick="addToCart(${
+                    product.price
+                })" id="addToCart-btn" class="buy-now btn btn-success">Add to cart</button>
+                <button onclick="loadDetails(${
+                    product.id
+                })" id="details-btn" class="btn btn-primary" data-bs-toggle="modal"
+                data-bs-target="#exampleModal">Details</button>
+            </div>
         `;
-        document.getElementById("all-products").appendChild(div);
+        allProducts.appendChild(div);
     }
 };
 
